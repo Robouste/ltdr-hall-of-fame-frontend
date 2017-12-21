@@ -1,0 +1,4 @@
+@import "material-palettes";
+
+$primary: map-get($mat-primary, 500);
+$accent: map-get($mat-accent, 500);
