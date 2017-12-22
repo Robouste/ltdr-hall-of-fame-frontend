@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>
+	Une perle est née
+</h2>
+<form #form="ngForm">
+	<mat-dialog-content>
+		<mat-form-field>
+			<mat-select placeholder="Qui est l'auteur de cette perle ?" [(ngModel)]="joke.author" name="author" required >
+				<mat-option *ngFor="let user of users" [value]="user.name" >
+					{{ user.name }}
+				</mat-option>
+			</mat-select>
+		</mat-form-field>
+		<mat-form-field>
+			<textarea matInput type="text" placeholder="La 'blague'" [(ngModel)]="joke.description" name="description" required></textarea>
+		</mat-form-field>
+	</mat-dialog-content>
+	<mat-dialog-actions>
+		<button mat-button mat-dialog-close>
+			Annuler
+		</button>
+		<button mat-button [mat-dialog-close]="joke" [disabled]="form.invalid">
+			Ajouter
+		</button>
+	</mat-dialog-actions>
+</form>

@@ -1,5 +1,5 @@
-import { AppComponent } from './app.component';
 import { Routes } from "@angular/router";
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const appRoutes: Routes = [
 	{
@@ -9,6 +9,6 @@ export const appRoutes: Routes = [
 	},
 	{
 		path: "home",
-		component: AppComponent
+		component: DashboardComponent
 	}
 ];

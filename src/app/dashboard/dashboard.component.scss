@@ -1,0 +1,46 @@
+mat-card {
+	margin: 10%;
+}
+
+mat-list-item {
+	.line-content {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	.mat-line {
+		display: flex;
+	}
+}
+
+.description {
+	flex-grow: 1;
+}
+
+.upvotes {
+	width: 150px;
+	mat-icon {
+		color: #208a20;
+		margin-right: 8px;
+	}
+}
+
+.downvotes {
+	width: 150px;
+	mat-icon {
+		color: #b60b0b;
+		margin-right: 8px;
+	}
+}
+
+.author {
+	margin-left: 16px;
+	color: #c0c0c0;
+}
+mat-card-footer {
+	text-align: right;
+	.add-joke-btn {
+		margin: 10px;
+	}
+}
