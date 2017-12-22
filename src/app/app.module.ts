@@ -6,9 +6,12 @@ import { appRoutes } from './app.routing';
 import { LayoutModule } from './layout/layout.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { JokeService } from './services/joke.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserService } from './services/user.service';
 import { VoteService } from './services/votes.service';
+import { LoginModule } from './login/login.module';
+import { LoginService } from './services/login.service';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 @NgModule({
 	declarations: [
@@ -19,12 +22,19 @@ import { VoteService } from './services/votes.service';
 		HttpClientModule,
 		SharedModule,
 		LayoutModule,
-		DashboardModule
+		DashboardModule,
+		LoginModule
 	],
 	providers: [
 		JokeService,
 		UserService,
-		VoteService
+		VoteService,
+		LoginService,
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: AuthInterceptorService,
+			multi: true
+		}
 	],
 	bootstrap: [AppComponent]
 })

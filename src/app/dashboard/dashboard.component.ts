@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Joke } from '../viewmodels/joke.model';
 import { JokeService } from '../services/joke.service';
-import { UserService } from '../services/user.service';
 import { User } from '../viewmodels/user.model';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { AddJokeDialogComponent } from './add-joke-dialog.component';
 import { Vote } from '../viewmodels/vote.model';
 import { VoteService } from '../services/votes.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
 	selector: 'app-dashboard',
@@ -22,10 +22,16 @@ export class DashboardComponent implements OnInit {
 	constructor(
 		private jokeService: JokeService,
 		private voteService: VoteService,
-		private dialog: MatDialog
+		private loginService: LoginService,
+		private dialog: MatDialog,
+		private snackBar: MatSnackBar
 	) { }
 
 	ngOnInit() {
+		this.getJokes();
+	}
+
+	getJokes() {
 		this.jokeService.list()
 			.subscribe((result) => {
 				this.jokes = result;
@@ -33,6 +39,10 @@ export class DashboardComponent implements OnInit {
 	}
 
 	openAddJokeDialog() {
+		if (!this.loginService.connectedUser) {
+			this.openSnackBar("T'es pas connecté !");
+			return;
+		}
 		const dialogRef = this.dialog.open(AddJokeDialogComponent, {
 			width: '325px',
 			disableClose: true
@@ -48,19 +58,39 @@ export class DashboardComponent implements OnInit {
 	addJoke(joke: Joke) {
 		this.jokeService.add(joke)
 			.subscribe((result) => {
-				console.log(result);
+				this.getJokes();
 			});
 	}
 
-	updateVote(jokeID, voteState) {
+	updateVote(joke: Joke, voteState) {
+		if (!this.loginService.connectedUser) {
+			this.openSnackBar("T'es pas connecté !");
+			return;
+		}
+		if (this.userHasVoted(joke, voteState)) {
+			this.openSnackBar("Tu peux pas voter deux fois la même chose grand");
+			return;
+		}
 		const vote = new Vote();
-		vote.jokeId = jokeID;
-		vote.userId = 1;
+		vote.jokeId = joke.id;
+		vote.userId = this.loginService.connectedUser.id;
 		vote.voteState = voteState;
 
 		this.voteService.submitVote(vote)
 			.subscribe(response => {
-				console.log(response);
+				this.getJokes();
 			});
+	}
+
+	userHasVoted(joke: Joke, voteState) {
+		return this.loginService.connectedUser ?
+			joke.votes.find(f => f.userId === this.loginService.connectedUser.id && f.voteState === voteState)
+			: false;
+	}
+
+	openSnackBar(message, duration = 5000) {
+		this.snackBar.open(message, "Ok...", {
+			duration: duration
+		});
 	}
 }

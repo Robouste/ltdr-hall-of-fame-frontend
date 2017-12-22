@@ -3,6 +3,10 @@ mat-card {
 }
 
 mat-list-item {
+	border-bottom: rgba(#c0c0c0, .666) solid 1px;
+	&:last-child {
+		border-bottom: 0;
+	}
 	.line-content {
 		display: flex;
 		flex-direction: row;
@@ -21,16 +25,22 @@ mat-list-item {
 .upvotes {
 	width: 150px;
 	mat-icon {
-		color: #208a20;
 		margin-right: 8px;
+		color: #c0c0c0;
+		&.checked {
+			color: #208a20;
+		}
 	}
 }
 
 .downvotes {
 	width: 150px;
 	mat-icon {
-		color: #b60b0b;
 		margin-right: 8px;
+		color: #9e9e9e;
+		&.checked {
+			color: #b60b0b;
+		}
 	}
 }
 

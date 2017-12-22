@@ -5,6 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { Joke } from '../viewmodels/joke.model';
+import { LoginService } from './login.service';
 
 @Injectable()
 export class JokeService {
@@ -14,10 +15,12 @@ export class JokeService {
 		headers: new HttpHeaders({'Content-type': 'application/json'})
 	};
 
-	constructor(private http: HttpClient) { }
+	constructor(
+		private http: HttpClient
+	) { }
 
 	list(): Observable<Joke[]> {
-		return this.http.get<Joke[]>(this.url)
+		return this.http.get<Joke[]>(this.url, this.getOptions())
 			.pipe(
 				map((jokes: Joke[]) => jokes.map(joke => new Joke(joke.id, joke.description, joke.author, joke.votes))),
 				catchError(this.handleError('getJokes', []))
@@ -30,8 +33,18 @@ export class JokeService {
 			description: joke.description
 		};
 
-		return this.http.post<Joke>(this.url, toSend, this.httpOptions)
+		return this.http.post<Joke>(this.url, toSend, this.getOptions())
 			.pipe();
+	}
+
+	private getOptions() {
+		return {
+			headers: new HttpHeaders(
+				{
+					'Content-type': 'application/json'
+				}
+			)
+		}
 	}
 
 	private handleError<T>(operation = 'operation', result?: T) {
