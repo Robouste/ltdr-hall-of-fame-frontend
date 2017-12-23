@@ -1,11 +1,7 @@
 <mat-card>
-	<mat-card-header>
-		<mat-card-title>
-			Jokes
-		</mat-card-title>
-	</mat-card-header>
 	<mat-card-content>
-		<mat-list>
+		<app-list></app-list>
+		<!-- <mat-list>
 			<mat-list-item *ngFor="let joke of jokes; let i = index;">
 				<div mat-line>
 					<div class="line-content description">
@@ -29,7 +25,7 @@
 					By {{ joke.author }}
 				</p>
 			</mat-list-item>
-		</mat-list>
+		</mat-list> -->
 	</mat-card-content>
 	<mat-card-footer>
 		<button mat-fab color="primary" class="add-joke-btn" (click)="openAddJokeDialog()">

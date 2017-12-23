@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Joke } from '../viewmodels/joke.model';
 import { JokeService } from '../services/joke.service';
 import { User } from '../viewmodels/user.model';
@@ -7,6 +7,7 @@ import { AddJokeDialogComponent } from './add-joke-dialog.component';
 import { Vote } from '../viewmodels/vote.model';
 import { VoteService } from '../services/votes.service';
 import { LoginService } from '../services/login.service';
+import { ListComponent } from './list/list.component';
 
 @Component({
 	selector: 'app-jokes',
@@ -16,8 +17,9 @@ import { LoginService } from '../services/login.service';
 
 export class JokesComponent implements OnInit {
 
-	public jokes: Array<Joke> = [];
 	public users: Array<User> = [];
+
+	@ViewChild(ListComponent) listViewChild: ListComponent;
 
 	constructor(
 		private jokeService: JokeService,
@@ -28,14 +30,6 @@ export class JokesComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.getJokes();
-	}
-
-	getJokes() {
-		this.jokeService.list()
-			.subscribe((result) => {
-				this.jokes = result;
-			});
 	}
 
 	openAddJokeDialog() {
@@ -58,34 +52,8 @@ export class JokesComponent implements OnInit {
 	addJoke(joke: Joke) {
 		this.jokeService.add(joke)
 			.subscribe((result) => {
-				this.getJokes();
+				this.listViewChild.refresh();
 			});
-	}
-
-	updateVote(joke: Joke, voteState) {
-		if (!this.loginService.connectedUser) {
-			this.openSnackBar("T'es pas connecté !");
-			return;
-		}
-		if (this.userHasVoted(joke, voteState)) {
-			this.openSnackBar("Tu peux pas voter deux fois la même chose grand");
-			return;
-		}
-		const vote = new Vote();
-		vote.jokeId = joke.id;
-		vote.userId = this.loginService.connectedUser.id;
-		vote.voteState = voteState;
-
-		this.voteService.submitVote(vote)
-			.subscribe(response => {
-				this.getJokes();
-			});
-	}
-
-	userHasVoted(joke: Joke, voteState) {
-		return this.loginService.connectedUser ?
-			joke.votes.find(f => f.userId === this.loginService.connectedUser.id && f.voteState === voteState)
-			: false;
 	}
 
 	openSnackBar(message, duration = 5000) {

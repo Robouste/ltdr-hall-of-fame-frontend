@@ -1,0 +1,51 @@
+@import "../../scss/colors";
+.filter {
+	// min-height: 64px;
+	// padding: 8px 24px 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	// background: #303030;
+	// margin-bottom: 10px;
+	mat-form-field {
+		// width: 100%;
+		margin-left: auto;
+	}
+}
+
+.vote-icon {
+	&.vote-up {
+		color: #c0c0c0;
+		&.checked {
+			color: $upvote-color;
+		}
+	}
+	&.vote-down {
+		color: #9e9e9e;
+		&.checked {
+			color: $downvote-color;
+		}
+	}
+}
+
+.joke-row {
+	cursor: pointer;
+	&:hover {
+		background: rgba(#9e9e9e, .2);
+	}
+}
+
+.joke-description {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-right: 15px;
+}
+
+.vote-cell {
+	flex: .25;
+}
+
+.author-cell {
+	flex: .5;
+}

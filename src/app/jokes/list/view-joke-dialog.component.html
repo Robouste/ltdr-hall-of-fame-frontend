@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>
+	{{ joke.author }} a dit:
+</h2>
+<mat-dialog-content>
+	<p class="joke">
+		{{ joke.description }}
+	</p>
+	<p class="vote-stats">
+		<span class="upvote">{{ joke.upvotes }}</span> personne(s) trouve(nt) que {{ joke.author }} était très inspiré(e) ce jour-là
+	</p>
+	<p class="vote-stats">
+		<span class="downvote">{{ joke.downvotes }}</span> personne(s) pense(nt) que {{ joke.author }} devrait aller se pendre
+	</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button mat-button mat-dialog-close>
+		Fermer
+	</button>
+</mat-dialog-actions>

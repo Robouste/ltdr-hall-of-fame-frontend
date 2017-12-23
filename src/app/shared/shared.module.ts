@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material/material.module';
 import { NgModule } from '@angular/core';
+import { LoaderComponent } from './loader/loader.component';
 
 const MODULES = [
 	BrowserModule,
@@ -15,10 +16,14 @@ const MODULES = [
 	MaterialModule,
 ];
 
+const COMPONENTS = [
+	LoaderComponent
+];
+
 @NgModule({
 	imports: [MODULES],
-	exports: [MODULES],
-	declarations: [],
+	exports: [MODULES, COMPONENTS],
+	declarations: [COMPONENTS],
 	providers: [],
 })
 export class SharedModule { }

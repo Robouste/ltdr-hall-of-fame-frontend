@@ -9,7 +9,9 @@ import {
 	MatInputModule,
 	MatSelectModule,
 	MatSnackBarModule,
-	MatTableModule
+	MatTableModule,
+	MatSortModule,
+	MatProgressSpinnerModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
 
@@ -24,7 +26,9 @@ const MODULES = [
 	MatInputModule,
 	MatSelectModule,
 	MatSnackBarModule,
-	MatTableModule
+	MatTableModule,
+	MatSortModule,
+	MatProgressSpinnerModule
 ];
 
 @NgModule({

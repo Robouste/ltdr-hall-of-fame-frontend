@@ -1,0 +1,20 @@
+@import "../../scss/colors";
+
+.joke {
+	text-align: center;
+	font-style: italic;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.vote-stats {
+	font-size: 12px;
+}
+
+.upvote {
+	color: $upvote-color;
+}
+
+.downvote {
+	color: $downvote-color;
+}
