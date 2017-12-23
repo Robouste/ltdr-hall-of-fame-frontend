@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+	production: true,
+	serverURL: "http://hos-api.robouste.be/api/"
 };

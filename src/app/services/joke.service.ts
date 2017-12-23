@@ -6,18 +6,21 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { Joke } from '../viewmodels/joke.model';
 import { LoginService } from './login.service';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class JokeService {
 
-	private url = "http://localhost:60559/api/Jokes";
+	private url = "";
 	private httpOptions = {
 		headers: new HttpHeaders({'Content-type': 'application/json'})
 	};
 
 	constructor(
 		private http: HttpClient
-	) { }
+	) {
+		this.url = environment.serverURL + "Jokes";
+	}
 
 	list(): Observable<Joke[]> {
 		return this.http.get<Joke[]>(this.url, this.getOptions())

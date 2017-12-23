@@ -9,12 +9,12 @@ import { VoteService } from '../services/votes.service';
 import { LoginService } from '../services/login.service';
 
 @Component({
-	selector: 'app-dashboard',
-	templateUrl: 'dashboard.component.html',
-	styleUrls: ['./dashboard.component.scss']
+	selector: 'app-jokes',
+	templateUrl: 'jokes.component.html',
+	styleUrls: ['./jokes.component.scss']
 })
 
-export class DashboardComponent implements OnInit {
+export class JokesComponent implements OnInit {
 
 	public jokes: Array<Joke> = [];
 	public users: Array<User> = [];

@@ -1,3 +1,4 @@
+import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -5,10 +6,14 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class UserService {
 
-	constructor(private http: HttpClient) { }
+	private url: string;
+
+	constructor(private http: HttpClient) {
+		this.url = environment.serverURL + "Users";
+	}
 
 	list(): Observable<any> {
-		return this.http.get("http://localhost:60559/api/Users")
+		return this.http.get(this.url)
 			.pipe();
 	}
 }

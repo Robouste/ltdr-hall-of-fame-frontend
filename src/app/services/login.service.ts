@@ -1,3 +1,4 @@
+import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../viewmodels/user.model';
@@ -7,7 +8,7 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class LoginService {
 
-	private url = "http://localhost:60559/api/Login";
+	private url = "";
 	private httpOptions = {
 		headers: new HttpHeaders({'Content-type': 'application/json'})
 	};
@@ -15,7 +16,9 @@ export class LoginService {
 	private token: string;
 	public connectedUser: User;
 
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {
+		this.url = environment.serverURL + "Login";
+	}
 
 	login(user: User): Observable<any> {
 		return this.http.post<User>(this.url, user, this.httpOptions)

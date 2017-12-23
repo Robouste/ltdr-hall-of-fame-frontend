@@ -4,7 +4,7 @@ import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routing';
 import { LayoutModule } from './layout/layout.module';
-import { DashboardModule } from './dashboard/dashboard.module';
+import { JokesModule } from './jokes/jokes.module';
 import { JokeService } from './services/joke.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserService } from './services/user.service';
@@ -12,6 +12,7 @@ import { VoteService } from './services/votes.service';
 import { LoginModule } from './login/login.module';
 import { LoginService } from './services/login.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
 	declarations: [
@@ -22,7 +23,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 		HttpClientModule,
 		SharedModule,
 		LayoutModule,
-		DashboardModule,
+		JokesModule,
 		LoginModule
 	],
 	providers: [
@@ -34,6 +35,10 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 			provide: HTTP_INTERCEPTORS,
 			useClass: AuthInterceptorService,
 			multi: true
+		},
+		{
+			provide: LocationStrategy,
+			useClass: HashLocationStrategy
 		}
 	],
 	bootstrap: [AppComponent]

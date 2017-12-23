@@ -1,16 +1,16 @@
 import { Routes } from "@angular/router";
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { JokesComponent } from './jokes/jokes.component';
 import { LoginComponent } from "./login/login.component";
 
 export const appRoutes: Routes = [
 	{
 		path: "",
 		pathMatch: "full",
-		redirectTo: "home"
+		redirectTo: "login"
 	},
 	{
-		path: "home",
-		component: DashboardComponent
+		path: "jokes",
+		component: JokesComponent
 	},
 	{
 		path: "login",
