@@ -1,0 +1,19 @@
+<mat-card>
+	<form #form="ngForm">
+		<mat-card-content>
+			<mat-form-field hintLabel="Min 6 characters">
+				<input #input matInput placeholder="Nouveau mot de passe" type="password" name="password" required [(ngModel)]="password" [minlength]="6" />
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput placeholder="Confirmer mot de passe" type="password" name="password2" required [(ngModel)]="password2" [pattern]="password" />
+			</mat-form-field>
+		</mat-card-content>
+		<mat-card-footer>
+			<button mat-button class="add-btn" [disabled]="form.invalid" (click)="updatePassword()">
+				<mat-icon>file_upload</mat-icon>
+				Mettre à jour
+			</button>
+		</mat-card-footer>
+	</form>
+	<app-loader [isLoading]="isLoading"></app-loader>
+</mat-card>

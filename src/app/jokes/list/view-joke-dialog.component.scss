@@ -13,8 +13,6 @@
 
 .vote-stats {
 	font-size: 12px;
-	line-height: 20px;
-	height: 20px;
 }
 
 .vote-amount {
@@ -30,8 +28,6 @@
 		color: $downvote-color;
 	}
 }
-
-
 
 .revert-quote {
 	transform: scaleX(-1);

@@ -37,11 +37,10 @@ export class LoginComponent implements OnInit {
 			.subscribe(
 				result => {
 					this.router.navigate(['jokes']);
+					this.isLoading = false;
 				},
 				error => {
 					this.openSnackBar(error);
-				},
-				() => {
 					this.isLoading = false;
 				}
 			);

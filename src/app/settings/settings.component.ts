@@ -14,6 +14,7 @@ export class SettingsComponent implements OnInit {
 
 	public users: User[] = [];
 	public currentUser: User;
+	public newUser: User = new User();
 	public loadingUsers = false;
 
 	constructor(
@@ -35,7 +36,7 @@ export class SettingsComponent implements OnInit {
 					this.getUsers();
 				},
 				(error: HttpErrorResponse) => {
-					this.openSnackBar(error.statusText);
+					this.openSnackBar(error.error || error.statusText);
 					this.loadingUsers = false;
 				}
 			);
@@ -63,11 +64,27 @@ export class SettingsComponent implements OnInit {
 				this.users = result;
 			},
 			(error: HttpErrorResponse) => {
-				this.openSnackBar(error.status + ": " + error.statusText);
+				this.openSnackBar(error.error || error.status + ": " + error.statusText);
+				this.loadingUsers = false;
 			},
 			() => {
 				this.loadingUsers = false;
 			}
+			);
+	}
+
+	addUser() {
+		this.loadingUsers = true;
+		this.userService.add(this.newUser)
+			.subscribe(
+				result => {
+					this.newUser = new User();
+					this.getUsers();
+				},
+				error => {
+					this.loadingUsers = false;
+					this.openSnackBar(error.statusText);
+				}
 			);
 	}
 

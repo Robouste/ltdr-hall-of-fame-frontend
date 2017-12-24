@@ -11,3 +11,12 @@ mat-dialog-actions {
 	justify-content: center;
 }
 
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $primary;
+    outline: 1px solid #333;
+}
+

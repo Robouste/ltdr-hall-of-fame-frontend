@@ -1,0 +1,15 @@
+mat-card {
+	width: 400px;
+	margin: 5% auto;
+
+	mat-form-field {
+		width: 100%;
+	}
+
+	mat-card-footer {
+		text-align: right;
+		.add-btn {
+			margin: 0 15px 15px;
+		}
+	}
+}

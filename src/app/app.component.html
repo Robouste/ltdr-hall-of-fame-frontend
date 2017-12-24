@@ -5,11 +5,22 @@
 				menu
 			</mat-icon>
 		</button>
-		<span class="app-title">Hall of shame</span>
-		<button mat-button class="logout-btn" (click)="logout()" *ngIf="isConnected">
-			<mat-icon>exit_to_app</mat-icon>
-			Logout
-		</button>
+		<span class="app-title">Hall of Shame</span>
+		<div *ngIf="isConnected" class="right-items">
+			<button mat-icon-button class="logout-btn" [matMenuTriggerFor]="userMenu" >
+				<mat-icon>settings</mat-icon>
+			</button>
+			<mat-menu #userMenu="matMenu">
+				<a mat-menu-item [routerLink]="['profil']">
+					<mat-icon>security</mat-icon>
+					Editer le profil
+				</a>
+				<button mat-menu-item (click)="logout()">
+					<mat-icon>exit_to_app</mat-icon>
+					Se déconnecter
+				</button>
+			</mat-menu>
+		</div>
 		<button mat-button class="logout-btn" (click)="login()" *ngIf="!isConnected">
 			<mat-icon>person</mat-icon>
 			Login

@@ -14,6 +14,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SettingsModule } from './settings/settings.module';
 import { StatisticsModule } from './statistics/statistics.module';
+import { ProfilModule } from './profil/profil.module';
 
 @NgModule({
 	declarations: [
@@ -27,6 +28,7 @@ import { StatisticsModule } from './statistics/statistics.module';
 		LoginModule,
 		SettingsModule,
 		StatisticsModule,
+		ProfilModule,
 	],
 	providers: [
 		JokeService,

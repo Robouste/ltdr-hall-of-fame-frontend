@@ -49,6 +49,7 @@ export class ListComponent implements OnInit {
 				},
 				error => {
 					this.openSnackBar(error);
+					this.isLoading = false;
 				},
 				() => {
 					this.isLoading = false;
@@ -120,6 +121,7 @@ export class ListComponent implements OnInit {
 				},
 				error => {
 					this.openSnackBar(error);
+					this.isLoading = false;
 				},
 				() => {
 					this.refresh();
