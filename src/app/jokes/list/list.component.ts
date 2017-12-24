@@ -97,9 +97,34 @@ export class ListComponent implements OnInit {
 
 	openJoke(joke: Joke) {
 		const dialogRef = this.dialog.open(ViewJokeDialogComponent, {
-			width: "320px"
+			width: "400px"
 		});
 		dialogRef.componentInstance.joke = joke;
+
+		dialogRef.afterClosed().subscribe(
+			value => {
+				if (value) {
+					this.deleteJoke(value);
+				}
+			}
+		)
+	}
+
+	deleteJoke(jokeId) {
+		this.isLoading = true;
+
+		this.jokeService.delete(jokeId)
+			.subscribe(
+				result => {
+					this.openSnackBar("Deleted");
+				},
+				error => {
+					this.openSnackBar(error);
+				},
+				() => {
+					this.refresh();
+				}
+			);
 	}
 
 	openSnackBar(message, duration = 3000) {

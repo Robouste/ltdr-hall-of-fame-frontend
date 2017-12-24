@@ -40,6 +40,13 @@ export class JokeService {
 			.pipe();
 	}
 
+	delete(jokeId): Observable<any> {
+		return this.http.delete(this.url + "/" + jokeId, this.getOptions())
+			.pipe(
+				catchError(this.handleError('getJokes', []))
+			);
+	}
+
 	private getOptions() {
 		return {
 			headers: new HttpHeaders(

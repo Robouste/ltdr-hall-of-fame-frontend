@@ -11,6 +11,8 @@ export class ViewJokeDialogComponent implements OnInit {
 
 	public joke: Joke;
 
+	public showConfirm = false;
+
 	constructor() { }
 
 	ngOnInit() { }
