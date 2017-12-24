@@ -13,19 +13,25 @@
 
 .vote-stats {
 	font-size: 12px;
+	line-height: 20px;
+	height: 20px;
 }
 
-.upvote {
-	color: $upvote-color;
+.vote-amount {
 	font-weight: bold;
-	font-size: 14px;
+	font-size: 20px;
+	margin-right: 8px;
+
+	&.upvote {
+		color: $upvote-color;
+	}
+
+	&.downvote {
+		color: $downvote-color;
+	}
 }
 
-.downvote {
-	color: $downvote-color;
-	font-weight: bold;
-	font-size: 14px;
-}
+
 
 .revert-quote {
 	transform: scaleX(-1);

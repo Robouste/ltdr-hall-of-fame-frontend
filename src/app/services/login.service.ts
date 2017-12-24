@@ -13,8 +13,28 @@ export class LoginService {
 		headers: new HttpHeaders({'Content-type': 'application/json'})
 	};
 
-	private token: string;
-	public connectedUser: User;
+	private _connectedUser: User = null;
+	public get connectedUser(): User {
+
+		if (this._connectedUser) {
+			return this._connectedUser;
+		}
+
+		this._connectedUser = JSON.parse(localStorage.getItem("current_user")) as User;
+		return this._connectedUser;
+	}
+
+	private _superUsers = [
+		"gourou"
+	];
+
+	private _adminUsers = [
+		"executeur"
+	];
+
+	private _lopetteUsers = [
+		"disciple"
+	];
 
 	constructor(private http: HttpClient) {
 		this.url = environment.serverURL + "Login";
@@ -24,18 +44,32 @@ export class LoginService {
 		return this.http.post<User>(this.url, user, this.httpOptions)
 			.pipe(
 				tap(result => {
-					this.setSession(result.token);
-					this.connectedUser = result.user;
+					this.setSession(result);
 				})
 			);
 	}
 
+	isSuperUser() {
+		return this.isConnected() && this._superUsers.includes(this.connectedUser.role);
+	}
+
+	isAdmin() {
+		return this.isConnected() && this._adminUsers.concat(this._superUsers).includes(this.connectedUser.role);
+	}
+
+	isConnected() {
+		return this.connectedUser != null;
+	}
+
 	private setSession(authResult) {
-		localStorage.setItem("id_token", authResult);
+		this._connectedUser = null;
+		localStorage.setItem("id_token", authResult.token);
+		localStorage.setItem("current_user", JSON.stringify(authResult.user));
 	}
 
 	logout() {
-		this.connectedUser = null;
+		this._connectedUser = null;
 		localStorage.removeItem("id_token");
+		localStorage.removeItem("current_user");
 	}
 }

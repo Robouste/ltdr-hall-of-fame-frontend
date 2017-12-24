@@ -3,7 +3,6 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './app.routing';
-import { LayoutModule } from './layout/layout.module';
 import { JokesModule } from './jokes/jokes.module';
 import { JokeService } from './services/joke.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -24,7 +23,6 @@ import { StatisticsModule } from './statistics/statistics.module';
 		RouterModule.forRoot(appRoutes),
 		HttpClientModule,
 		SharedModule,
-		LayoutModule,
 		JokesModule,
 		LoginModule,
 		SettingsModule,

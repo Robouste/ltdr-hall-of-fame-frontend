@@ -8,10 +8,10 @@
 		<mat-icon>format_quote</mat-icon>
 	</p>
 	<p class="vote-stats">
-		<span class="upvote">{{ joke.upvotes }}</span> personne(s) trouve(nt) que {{ joke.author }} était très inspiré(e) ce jour-là
+		<span class="upvote vote-amount">{{ joke.upvotes }}</span> personne<span *ngIf="joke.upvotes > 1">s</span> trouve<span *ngIf="joke.upvotes > 1">nt</span> que {{ joke.author }} était très inspiré(e) ce jour-là
 	</p>
 	<p class="vote-stats">
-		<span class="downvote">{{ joke.downvotes }}</span> personne(s) pense(nt) que {{ joke.author }} devrait aller se pendre
+		<span class="downvote vote-amount">{{ joke.downvotes }}</span> personne<span *ngIf="joke.downvotes > 1">s</span> pense<span *ngIf="joke.downvotes > 1">nt</span> que {{ joke.author }} devrait aller se pendre
 	</p>
 </mat-dialog-content>
 <mat-dialog-actions>
