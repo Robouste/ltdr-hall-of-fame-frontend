@@ -8,3 +8,10 @@
 		margin-right: 16px;
 	}
 }
+
+mat-toolbar {
+	position: fixed;
+	z-index: 2;
+}
+
+

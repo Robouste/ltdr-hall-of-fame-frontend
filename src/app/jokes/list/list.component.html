@@ -15,12 +15,12 @@
 
 	<ng-container matColumnDef="author">
 		<mat-header-cell *matHeaderCellDef mat-sort-header class="author-cell">L'auteur</mat-header-cell>
-		<mat-cell *matCellDef="let joke" class="author-cell">{{ joke.author }}</mat-cell>
+		<mat-cell *matCellDef="let joke" class="author-cell xs-bottom-row">{{ joke.author }}</mat-cell>
 	</ng-container>
 
 	<ng-container matColumnDef="upvotes">
 		<mat-header-cell *matHeaderCellDef mat-sort-header class="vote-cell">Wééé</mat-header-cell>
-		<mat-cell *matCellDef="let joke" class="vote-cell">
+		<mat-cell *matCellDef="let joke" class="vote-cell xs-bottom-row">
 			<button mat-icon-button (click)="updateVote(joke, 1, $event)">
 				<mat-icon class="vote-icon vote-up" [class.checked]="userHasVoted(joke, 1)" >thumb_up</mat-icon>
 			</button>
@@ -30,7 +30,7 @@
 
 	<ng-container matColumnDef="downvotes">
 		<mat-header-cell *matHeaderCellDef mat-sort-header class="vote-cell">Bouuuh</mat-header-cell>
-		<mat-cell *matCellDef="let joke" class="vote-cell">
+		<mat-cell *matCellDef="let joke" class="vote-cell xs-bottom-row">
 			<button mat-icon-button (click)="updateVote(joke, -1, $event)">
 				<mat-icon class="vote-icon vote-down" [class.checked]="userHasVoted(joke, -1)" >thumb_down</mat-icon>
 			</button>

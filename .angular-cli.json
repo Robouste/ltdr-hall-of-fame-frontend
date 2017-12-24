@@ -23,7 +23,8 @@
 		"app/scss/application.scss"
       ],
       "scripts": [
-		  "../node_modules/blueimp-md5/js/md5.js"
+		  "../node_modules/blueimp-md5/js/md5.js",
+		  "scripts.js"
 	  ],
       "environmentSource": "environments/environment.ts",
       "environments": {

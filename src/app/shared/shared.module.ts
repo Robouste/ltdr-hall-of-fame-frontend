@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material/material.module';
 import { NgModule } from '@angular/core';
 import { LoaderComponent } from './loader/loader.component';
+import { PipesModule } from './pipes/pipes.module';
 
 const MODULES = [
 	BrowserModule,
@@ -14,6 +15,7 @@ const MODULES = [
 	CommonModule,
 	RouterModule,
 	MaterialModule,
+	PipesModule
 ];
 
 const COMPONENTS = [

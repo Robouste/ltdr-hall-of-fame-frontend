@@ -1,0 +1,50 @@
+<div class="flex-container">
+	<mat-card>
+		<mat-card-header>
+			<div mat-card-avatar>
+				<mat-icon>android</mat-icon>
+			</div>
+			<mat-card-title>Exécuteurs</mat-card-title>
+			<mat-card-subtitle>S'assurent que l'ordre établi persiste</mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content>
+			<mat-list>
+				<mat-list-item *ngFor="let user of users | removeUser: currentUser.id | roleFilter: 'executeur'">
+					<div>
+						{{ user.name }}
+					</div>
+					<button mat-raised-button color="accent" class="action-btn" (click)="demote(user.id)">
+						<mat-icon>arrow_downward</mat-icon>
+						Demote
+					</button>
+				</mat-list-item>
+			</mat-list>
+		</mat-card-content>
+		<app-loader [isLoading]="loadingUsers"></app-loader>
+	</mat-card>
+	<mat-card>
+		<mat-card-header>
+			<div mat-card-avatar>
+				<mat-icon>school</mat-icon>
+			</div>
+			<mat-card-title>Disciples</mat-card-title>
+			<mat-card-subtitle>Notre armée de fidèles</mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content>
+			<mat-list>
+				<mat-list-item *ngFor="let user of users | roleFilter">
+					<div>
+						{{ user.name }}
+					</div>
+					<button mat-raised-button color="primary" class="action-btn" (click)="promote(user.id)">
+						<mat-icon>arrow_upward</mat-icon>
+						Promote
+					</button>
+				</mat-list-item>
+			</mat-list>
+		</mat-card-content>
+		<app-loader [isLoading]="loadingUsers"></app-loader>
+	</mat-card>
+</div>
+
+

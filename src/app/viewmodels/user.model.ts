@@ -1,7 +1,8 @@
-import { Vote } from "./vote.model";
 
 export class User {
 	id: number;
 	name: string;
 	password: string;
+	role: string;
+	description: string;
 }

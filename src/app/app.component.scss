@@ -1,0 +1,40 @@
+@import "./scss/colors";
+
+.app-container {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.is-mobile {
+	position: fixed;
+	z-index: 2;
+}
+
+mat-sidenav-container {
+	flex: 1;
+	margin-top: 56px;
+}
+
+mat-sidenav {
+	width: 250px;
+}
+
+mat-nav-list {
+	a {
+		mat-icon {
+			margin-right: 16px;
+		}
+		&.active, &.active:hover, &.active:focus {
+			background: $accent;
+		}
+	}
+}
+
+.is-mobile, mat-sidenav-container {
+	flex: 1 0 auto;
+}

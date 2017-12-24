@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { User } from '../../viewmodels/user.model';
+import { MatSidenav } from '@angular/material';
 
 @Component({
 	selector: 'app-toolbar',
@@ -12,6 +13,8 @@ import { User } from '../../viewmodels/user.model';
 export class ToolbarComponent implements OnInit {
 
 	public connectedUser: User;
+
+	@Input() matSidenav: MatSidenav;
 
 	constructor(
 		private loginService: LoginService,
@@ -31,5 +34,9 @@ export class ToolbarComponent implements OnInit {
 	logout() {
 		this.loginService.logout();
 		this.router.navigate(['login']);
+	}
+
+	toggleSideNav() {
+		this.matSidenav.toggle();
 	}
 }

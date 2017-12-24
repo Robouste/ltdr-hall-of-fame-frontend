@@ -13,6 +13,8 @@ import { LoginModule } from './login/login.module';
 import { LoginService } from './services/login.service';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { SettingsModule } from './settings/settings.module';
+import { StatisticsModule } from './statistics/statistics.module';
 
 @NgModule({
 	declarations: [
@@ -24,7 +26,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 		SharedModule,
 		LayoutModule,
 		JokesModule,
-		LoginModule
+		LoginModule,
+		SettingsModule,
+		StatisticsModule,
 	],
 	providers: [
 		JokeService,

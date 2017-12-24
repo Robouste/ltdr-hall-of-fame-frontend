@@ -1,5 +1,9 @@
 <mat-toolbar color="primary">
-	<mat-icon>keyboard_voice</mat-icon>
+	<button mat-icon-button (click)="toggleSideNav()">
+		<mat-icon>
+			menu
+		</mat-icon>
+	</button>
 	<span class="app-title">Hall of shame</span>
 	<button mat-button class="logout-btn" (click)="logout()" *ngIf="connectedUser">
 		<mat-icon>exit_to_app</mat-icon>
