@@ -76,6 +76,8 @@ export class ListComponent implements OnInit {
 			return;
 		}
 
+		this.isLoading = true;
+
 		const vote = new Vote();
 		vote.jokeId = joke.id;
 		vote.userId = this.loginService.connectedUser.id;
