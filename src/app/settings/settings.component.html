@@ -48,31 +48,7 @@
 		<app-loader [isLoading]="loadingUsers"></app-loader>
 	</mat-card>
 </div>
-<div class="card-item">
-	<mat-card>
-		<form class="add-user-form" #form="ngForm" >
-			<mat-card-header>
-				<div mat-card-avatar>
-					<mat-icon>person_add</mat-icon>
-				</div>
-				<mat-card-title>Nouveau membre</mat-card-title>
-				<mat-card-subtitle>Notre armée se renforce !</mat-card-subtitle>
-			</mat-card-header>
-			<mat-card-content>
-					<mat-form-field>
-						<input matInput type="text" placeholder="Pseudo" [(ngModel)]="newUser.name" required name="name" [minlength]="3" />
-					</mat-form-field>
-					<mat-form-field>
-						<input matInput type="text" placeholder="Description" [(ngModel)]="newUser.description" name="description" />
-					</mat-form-field>
-			</mat-card-content>
-			<mat-card-footer>
-				<button mat-button class="add-btn" [disabled]="form.invalid" (click)="addUser()">
-					<mat-icon>add</mat-icon>
-					Ajouter
-				</button>
-			</mat-card-footer>
-		</form>
-	</mat-card>
-</div>
+<button mat-fab color="accent" (click)="openAddUserDialog()" class="add-user-btn">
+	<mat-icon>add</mat-icon>
+</button>
 

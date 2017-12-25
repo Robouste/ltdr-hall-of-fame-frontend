@@ -29,16 +29,8 @@ mat-card {
 	}
 }
 
-.add-user-form {
-	mat-form-field {
-		width: 100%;
-	}
-
-	mat-card-footer {
-		text-align: right;
-		.add-btn {
-			margin: 0 15px 15px;
-		}
-	}
-
+.add-user-btn {
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
 }

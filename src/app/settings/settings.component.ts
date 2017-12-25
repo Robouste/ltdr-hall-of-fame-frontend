@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../viewmodels/user.model';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LoginService } from '../services/login.service';
+import { AddUserDialogComponent } from './add-user-dialog.component';
 
 @Component({
 	selector: 'app-settings',
@@ -20,7 +21,8 @@ export class SettingsComponent implements OnInit {
 	constructor(
 		private userService: UserService,
 		private loginService: LoginService,
-		private snackBar: MatSnackBar
+		private snackBar: MatSnackBar,
+		private dialog: MatDialog
 	) { }
 
 	ngOnInit() {
@@ -73,12 +75,23 @@ export class SettingsComponent implements OnInit {
 			);
 	}
 
-	addUser() {
+	openAddUserDialog() {
+		const dialogRef = this.dialog.open(AddUserDialogComponent, {
+			width: "320px"
+		});
+
+		dialogRef.afterClosed().subscribe((user: User) => {
+			if (user) {
+				this.addUser(user);
+			}
+		});
+	}
+
+	addUser(user: User) {
 		this.loadingUsers = true;
-		this.userService.add(this.newUser)
+		this.userService.add(user)
 			.subscribe(
 				result => {
-					this.newUser = new User();
 					this.getUsers();
 				},
 				error => {

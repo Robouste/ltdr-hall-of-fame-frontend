@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>
+	Ajouter un membre
+</h2>
+<form #form="ngForm">
+	<mat-dialog-content>
+		<mat-form-field>
+			<input matInput type="text" placeholder="Pseudo" [(ngModel)]="user.name" required name="name" [minlength]="3" />
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput type="text" placeholder="Description" [(ngModel)]="user.description" name="description" />
+		</mat-form-field>
+	</mat-dialog-content>
+	<mat-dialog-actions>
+		<button mat-button mat-dialog-close>
+			Fermer
+		</button>
+		<button mat-raised-button color="accent" [mat-dialog-close]="user" [disabled]="form.invalid">
+			<mat-icon>add</mat-icon>
+			Ajouter
+		</button>
+	</mat-dialog-actions>
+</form>

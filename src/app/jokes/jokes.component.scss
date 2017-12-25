@@ -10,19 +10,8 @@ mat-card {
 	}
 }
 
-mat-card-footer {
-	text-align: right;
-	.add-joke-btn {
-		margin: 10px;
-		@media(max-width: $xs-size) {
-			margin: 0;
-			position: fixed;
-			bottom: 10px;
-			right: 10px;
-		}
-	}
-
-	@media(max-width: $xs-size) {
-		margin: 0;
-	}
+.add-joke-btn {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
 }
