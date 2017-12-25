@@ -3,6 +3,7 @@
 .card-item {
 	width: 50%;
 	float: left;
+	padding: 15px;
 
 	@media(max-width: $xs-size) {
 		width: 100%;
@@ -10,13 +11,7 @@
 }
 
 mat-card {
-	width: 80%;
-	margin: 5% auto;
-
-	@media(max-width: 400px) {
-		width: 95%;
-		margin: 5% 0;
-	}
+	width: 100%;
 }
 
 .action-btn {

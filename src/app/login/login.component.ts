@@ -46,10 +46,6 @@ export class LoginComponent implements OnInit {
 			);
 	}
 
-	test() {
-		this.testicule = md5(this.user.password);
-	}
-
 	openSnackBar(message, duration = 5000) {
 		this.snackBar.open(message, "Ok...", {
 			duration: duration

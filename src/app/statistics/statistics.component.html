@@ -1,3 +1,68 @@
-<p>
-  Coming (eventualy) soon !
-</p>
+<div class="card-item">
+	<mat-card>
+		<mat-card-header>
+			<div mat-card-avatar>
+				<mat-icon>thumb_up</mat-icon>
+			</div>
+			<mat-card-title>La meilleure</mat-card-title>
+			<mat-card-subtitle></mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content>
+			<p>
+				<mat-icon class="revert-quote">format_quote</mat-icon>
+				{{ stats?.bestJoke.description }}
+				<mat-icon>format_quote</mat-icon>
+			</p>
+		</mat-card-content>
+	</mat-card>
+</div>
+<div class="card-item">
+	<mat-card>
+		<mat-card-header>
+			<div mat-card-avatar>
+				<mat-icon>thumb_down</mat-icon>
+			</div>
+			<mat-card-title>La plus honteuse</mat-card-title>
+			<mat-card-subtitle></mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content>
+			<p>
+				<mat-icon class="revert-quote">format_quote</mat-icon>
+				{{ stats?.worstJoke.description }}
+				<mat-icon>format_quote</mat-icon>
+			</p>
+		</mat-card-content>
+	</mat-card>
+</div>
+<div class="card-item">
+	<mat-card>
+		<mat-card-header>
+			<div mat-card-avatar>
+				<mat-icon>sentiment_very_satisfied</mat-icon>
+			</div>
+			<mat-card-title>Le plus drôle</mat-card-title>
+			<mat-card-subtitle></mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content>
+			<p>
+				{{ stats?.bestAuthor }}
+			</p>
+		</mat-card-content>
+	</mat-card>
+</div>
+<div class="card-item">
+	<mat-card>
+		<mat-card-header>
+			<div mat-card-avatar>
+				<mat-icon>sentiment_very_dissatisfied</mat-icon>
+			</div>
+			<mat-card-title>Va te pendre</mat-card-title>
+			<mat-card-subtitle></mat-card-subtitle>
+		</mat-card-header>
+		<mat-card-content>
+			<p>
+				{{ stats?.worstAuthor }}
+			</p>
+		</mat-card-content>
+	</mat-card>
+</div>

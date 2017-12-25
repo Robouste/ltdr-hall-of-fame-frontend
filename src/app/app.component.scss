@@ -17,7 +17,7 @@ mat-toolbar {
 
 mat-sidenav-container {
 	flex: 1;
-	margin-top: 56px;
+	margin-top: 64px;
 }
 
 mat-sidenav {
@@ -33,6 +33,10 @@ mat-nav-list {
 			background: $accent;
 		}
 	}
+}
+
+mat-sidenav-content {
+	padding: 15px;
 }
 
 .is-mobile, mat-sidenav-container {

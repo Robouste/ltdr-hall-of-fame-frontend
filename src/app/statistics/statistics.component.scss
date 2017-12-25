@@ -1,0 +1,19 @@
+@import "../scss/variables";
+
+.card-item {
+	width: 50%;
+	float: left;
+	padding: 15px;
+
+	@media(max-width: $xs-size) {
+		width: 100%;
+	}
+}
+
+.revert-quote {
+	transform: scaleX(-1);
+}
+
+p {
+	text-align: center;
+}

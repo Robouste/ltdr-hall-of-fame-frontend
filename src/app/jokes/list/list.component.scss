@@ -52,21 +52,24 @@
 	text-overflow: ellipsis;
 	padding-right: 15px;
 	@media(max-width: $xs-size) {
-		width: 100%;
-		flex: unset;
 		padding-top: 10px;
-		padding-right: 1px;
+		padding-right: 0;
+		flex: 1 0 100%;
 	}
 }
 
 .vote-cell {
 	flex: .25;
+	@media(max-width: $xs-size) {
+		flex: 1 0 25%;
+	}
 }
 
 .author-cell {
 	flex: .5;
 	@media(max-width: $xs-size) {
 		color: #c0c0c0;
+		flex: 1 0 50%;
 	}
 }
 
