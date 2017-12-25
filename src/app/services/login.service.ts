@@ -88,7 +88,13 @@ export class LoginService {
 
 	getExpiration() {
 		const expiration = localStorage.getItem("expires_at");
-		const expiresAt = JSON.parse(expiration);
+		let expiresAt = moment();
+		try {
+			expiresAt = JSON.parse(expiration);
+		}
+		catch (ex) {
+			this.logout();
+		}
 		return moment(expiresAt);
 	}
 }
