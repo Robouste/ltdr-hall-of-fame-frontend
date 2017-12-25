@@ -1,4 +1,5 @@
 @import "../scss/variables";
+@import "../scss/colors";
 
 .card-item {
 	width: 50%;
@@ -7,6 +8,21 @@
 
 	@media(max-width: $xs-size) {
 		width: 100%;
+	}
+
+	mat-card.joke {
+		height: 300px;
+
+		.joke-content {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			height: 210px;
+			background: $joke-bg;
+			margin-left: -24px;
+			margin-right: -24px;
+		}
 	}
 }
 
