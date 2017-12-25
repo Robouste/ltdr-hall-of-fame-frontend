@@ -16,6 +16,9 @@ import { SettingsModule } from './settings/settings.module';
 import { StatisticsModule } from './statistics/statistics.module';
 import { ProfilModule } from './profil/profil.module';
 import { StatsService } from './services/stats.service';
+import { OrderByPipe } from './shared/pipes/order-by.pipe';
+import { ConnectedGuard } from './guards/connected.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 @NgModule({
 	declarations: [
@@ -37,6 +40,9 @@ import { StatsService } from './services/stats.service';
 		VoteService,
 		LoginService,
 		StatsService,
+		OrderByPipe,
+		ConnectedGuard,
+		AdminGuard,
 		{
 			provide: HTTP_INTERCEPTORS,
 			useClass: AuthInterceptorService,

@@ -16,6 +16,7 @@
 				<input matInput type="password" [(ngModel)]="user.password" placeholder="Mot de passe" name="password" required />
 				<mat-icon matSuffix>security</mat-icon>
 			</mat-form-field>
+			<mat-checkbox [(ngModel)]="stayLoggedIn" name="stayLoggedIn" >Rester connecté</mat-checkbox>
 		</mat-card-content>
 		<mat-card-footer>
 			<button mat-button color="primary" (click)="login()" [disabled]="form.invalid">

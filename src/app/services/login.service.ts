@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { tap } from 'rxjs/operators';
 import { AuthResponse } from '../viewmodels/auth-response.model';
 
+import * as moment from "moment";
+
 @Injectable()
 export class LoginService {
 
@@ -41,8 +43,13 @@ export class LoginService {
 		this.url = environment.serverURL + "Login";
 	}
 
-	login(user: User): Observable<AuthResponse> {
-		return this.http.post<AuthResponse>(this.url, user, this.httpOptions)
+	login(user: User, stayLoggedIn = false): Observable<AuthResponse> {
+		const data = {
+			user: user,
+			stayAlive: stayLoggedIn
+		};
+
+		return this.http.post<AuthResponse>(this.url, data, this.httpOptions)
 			.pipe(
 				tap((result: AuthResponse) => {
 					this.setSession(result);
@@ -59,14 +66,17 @@ export class LoginService {
 	}
 
 	isConnected() {
-		return this.connectedUser != null;
+		return this.connectedUser != null && moment().isBefore(this.getExpiration());
 	}
 
 	private setSession(authResult: AuthResponse) {
+
+		const expiresAt = moment(authResult.expiresAt);
+
 		this._connectedUser = null;
 		localStorage.setItem("id_token", authResult.token);
 		localStorage.setItem("current_user", JSON.stringify(authResult.user));
-		localStorage.setItem("expires_at", authResult.expiresAt);
+		localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
 	}
 
 	logout() {
@@ -74,5 +84,11 @@ export class LoginService {
 		localStorage.removeItem("id_token");
 		localStorage.removeItem("current_user");
 		localStorage.removeItem("expires_at");
+	}
+
+	getExpiration() {
+		const expiration = localStorage.getItem("expires_at");
+		const expiresAt = JSON.parse(expiration);
+		return moment(expiresAt);
 	}
 }

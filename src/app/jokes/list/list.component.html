@@ -20,21 +20,21 @@
 
 	<ng-container matColumnDef="upvotes">
 		<mat-header-cell *matHeaderCellDef mat-sort-header class="vote-cell">Wééé</mat-header-cell>
-		<mat-cell *matCellDef="let joke" class="vote-cell xs-bottom-row">
+		<mat-cell *matCellDef="let joke" class="vote-cell xs-bottom-row" [matTooltip]="joke.getUserList(joke.upvotes)" matTooltipClass="mat-tooltip">
 			<button mat-icon-button (click)="updateVote(joke, 1, $event)">
 				<mat-icon class="vote-icon vote-up" [class.checked]="userHasVoted(joke, 1)" >thumb_up</mat-icon>
 			</button>
-			{{ joke.upvotes }}
+			{{ joke.upvotes.length }}
 		</mat-cell>
 	</ng-container>
 
 	<ng-container matColumnDef="downvotes">
 		<mat-header-cell *matHeaderCellDef mat-sort-header class="vote-cell">Bouuuh</mat-header-cell>
-		<mat-cell *matCellDef="let joke" class="vote-cell xs-bottom-row">
+		<mat-cell *matCellDef="let joke" class="vote-cell xs-bottom-row" [matTooltip]="joke.getUserList(joke.downvotes)" matTooltipClass="mat-tooltip">
 			<button mat-icon-button (click)="updateVote(joke, -1, $event)">
 				<mat-icon class="vote-icon vote-down" [class.checked]="userHasVoted(joke, -1)" >thumb_down</mat-icon>
 			</button>
-			{{ joke.downvotes }}
+			{{ joke.downvotes.length }}
 		</mat-cell>
 	</ng-container>
 

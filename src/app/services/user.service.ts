@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../viewmodels/user.model';
+import { OrderByPipe } from '../shared/pipes/order-by.pipe';
+import { map } from 'rxjs/operators';
 
 declare module String {
 	export let format: any;
@@ -16,16 +18,21 @@ export class UserService {
 	private demoteUrl: string;
 	private updatePasswordUrl: string;
 
-	constructor(private http: HttpClient) {
+	constructor(
+		private http: HttpClient,
+		private orderByPipe: OrderByPipe
+	) {
 		this.url = environment.serverURL + "Users";
 		this.promoteUrl = this.url + "/{0}/Promote";
 		this.demoteUrl = this.url + "/{0}/Demote";
 		this.updatePasswordUrl = this.url + "/{0}/UpdatePassword";
 	}
 
-	list(): Observable<any> {
-		return this.http.get(this.url)
-			.pipe();
+	list(): Observable<User[]> {
+		return this.http.get<User[]>(this.url)
+			.pipe(
+				map(list => this.orderByPipe.transform(list, "name"))
+			);
 	}
 
 	add(user: User): Observable<any> {

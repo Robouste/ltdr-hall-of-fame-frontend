@@ -14,7 +14,7 @@ declare var md5;
 export class LoginComponent implements OnInit {
 
 	public user: User = new User();
-	public testicule: string;
+	public stayLoggedIn = false;
 
 	public isLoading = false;
 
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 		user.name = this.user.name;
 		user.password = md5(this.user.password);
 
-		this.loginService.login(user)
+		this.loginService.login(user, this.stayLoggedIn)
 			.subscribe(
 				result => {
 					this.router.navigate(['jokes']);
